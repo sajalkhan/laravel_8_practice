@@ -7,6 +7,12 @@
     <title>Contact</title>
 </head>
 <body>
+
+    <a href={{url('/')}}>Home</a> |
+    <a href={{URL::to('/about')}}>About</a> |
+    <a href={{route('con')}}>Contact</a>
+    {{-- //route is SEO friendly and it's better to use --}}
+
     <h1>Welcome to contact page</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vel nobis odio earum magni sit fugiat officiis, cupiditate omnis rerum, aliquam dolor repellendus placeat illo tempora qui assumenda repellat ad?
     Exercitationem repellendus similique nostrum repellat! Laboriosam eaque excepturi sed quisquam obcaecati similique possimus commodi illo veritatis asperiores. Quae deserunt officia ab fuga fugiat. Tempora tempore sit sunt ab porro nihil.
@@ -18,5 +24,6 @@
     Fugiat adipisci, dolor in necessitatibus nesciunt at, illum minus dolorum repellendus eum porro saepe! Voluptates adipisci, repudiandae debitis doloribus sapiente voluptatibus maiores numquam eos impedit placeat eaque reprehenderit, dicta id.
     Cum, est eaque ducimus exercitationem, architecto beatae et expedita quos laboriosam quasi nobis accusantium dolorum eveniet ab! Beatae, quisquam ipsum? Quas porro autem cupiditate, exercitationem minima laudantium aperiam quibusdam quod?
     Expedita repudiandae consectetur blanditiis dolorem. Quos quibusdam, exercitationem, aliquid explicabo fugiat est suscipit, impedit sed harum dolor sit eaque porro repudiandae ad. Possimus aliquam neque quos nisi natus. Animi, nihil.</p>
+
 </body>
 </html>

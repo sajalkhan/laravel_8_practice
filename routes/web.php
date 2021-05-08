@@ -32,7 +32,7 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
+Route::get('/contact-page-test', function () {
     // echo "<h1>it's contact page</h1>";
     return view('contact');
-});
+})->name('con');

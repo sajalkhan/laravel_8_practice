@@ -13,6 +13,13 @@
         </style>
     </head>
     <body class="antialiased">
+
+        <a href={{url('/')}}>Home</a> |
+        <a href={{URL::to('/about')}}>About</a> |
+        <a href={{route('con')}}>Contact</a>
+        {{-- //route is SEO friendly and it's better to use --}}
+
         <h2>Welcome to laravel</h2>
+
     </body>
 </html>
