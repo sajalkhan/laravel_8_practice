@@ -1,17 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\ContactController; //! also need to include controller path
 
 //! here we create web route
 //? laravel have 6 types of routes
@@ -24,6 +14,8 @@ use Illuminate\Support\Facades\Route;
  //* OPTIONS
  */
 
+//TODO: make a controller ->  php artisan make:controller controllername
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,7 +24,9 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
-    // echo "<h1>it's contact page</h1>";
-    return view('contact');
-});
+//? get url request using controller with laravel 6, 7
+// Route::get('/contact', 'ContactController@index'); //! this wouldn't work in laravel 8
+
+//TODO: https://laravel.com/docs/8.x/routing
+//? this is laravel 8 systax to get url request using controller
+Route::get('/contact', [ContactController::class, 'index']);
