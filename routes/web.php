@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use app\models\User;
+use Illuminate\Support\Facades\DB;  //database query builder
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,8 +25,9 @@ use Illuminate\Support\Facades\Route;
  //* OPTIONS
  */
 
+//TODO: create a new database table -> php artisan migrate
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/register');
 });
 
 Route::get('/about', function () {
@@ -36,3 +38,14 @@ Route::get('/contact', function () {
     // echo "<h1>it's contact page</h1>";
     return view('contact');
 });
+
+//TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    // $users = User::all();
+    // return view('dashboard', compact('users'));
+
+    //TODO: read query builder -> https://laravel.com/docs/8.x/queries
+    $users = DB::table('users')->get();
+    return view('dashboard', ['users' => $users]);
+})->name('dashboard');
