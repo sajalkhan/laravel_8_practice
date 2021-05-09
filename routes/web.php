@@ -1,31 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\models\User;
 use Illuminate\Support\Facades\DB;  //database query builder
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//! here we create web route
-//? laravel have 6 types of routes
-/**
- //* GET --> when you have to show some content you have to use get method
- //* POST --> when you have to insert some of the data in database you have to use post method
- //* PUT --> when you want to update some data into database you have to use put method
- //* DELETE  --> when you want to delete some data from database you have use delete method
- //* PATCH --> when you want to update one single field you have to use patch method
- //* OPTIONS
- */
+use App\Http\Controllers\CategoryController;
+// use app\models\User;
 
 //TODO: create a new database table -> php artisan migrate
+//TODO: learn create model and migration https://laravel.com/docs/8.x/eloquent
+//TODO: create model and migration -> php artisan make:model modelname -m
+//TODO: Create controller -> php artisan make:controller  controllername
+
 Route::get('/', function () {
     return view('auth/register');
 });
@@ -39,10 +23,13 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+//Category Controller
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    // $users = User::all();
+    // $users = User::all();  //useful when we use modal
     // return view('dashboard', compact('users'));
 
     //TODO: read query builder -> https://laravel.com/docs/8.x/queries
