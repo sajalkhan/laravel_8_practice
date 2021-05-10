@@ -29,6 +29,11 @@ Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.ca
 //Add Category
 Route::post('/category/add', [CategoryController::class, 'AddCategory'])->name('add.category');
 
+//Edit Category
+Route::get('/category/edit/{id}', [CategoryController::class, 'EditCategory']);
+
+//Update Category
+Route::post('/category/update/{id}', [CategoryController::class, 'UpdateCategory']);
 
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 

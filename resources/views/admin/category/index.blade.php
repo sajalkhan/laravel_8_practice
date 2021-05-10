@@ -35,6 +35,7 @@
                                     <th scope="col">Category Name</th>
                                     <th scope="col">user</th>
                                     <th scope="col">Created At</th>
+                                    <th scope='col'>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +58,10 @@
                                         {{-- 👇 this is usefule when we read data from query builder
                                             <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td>--}}
                                     @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{url('category/edit/'.$cat->id)}}" class='btn btn-info'>Edit</a>
+                                        <a href="" class='btn btn-danger'>Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

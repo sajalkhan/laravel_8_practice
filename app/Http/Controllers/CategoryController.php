@@ -77,4 +77,34 @@ class CategoryController extends Controller
 
         return Redirect()->back()->with('success', 'Category Inserted Successfully!');
     }
+
+    public function EditCategory($id)
+    {
+        // $category = DB::table('categories')->where('id', $id)->first();  //! 👈 with required query
+        $category = Category::find($id); //! 👈 with Eloquent ORM
+        return view('admin/category/EditCategory', compact('category'));
+    }
+
+    public function UpdateCategory(Request $request, $id)
+    {
+        $request->validate(
+            ['user_category' => 'required|unique:categories|min:6|max:255'],
+        );
+
+        //! 👇 update with Eloquent ORM (Object Relational Model)
+        // $update = Category::find($id)->update([
+        //     'user_category' => $request->user_category,
+        //     'user_id' => Auth::user()->id,
+        //     'created_at' => Carbon::now()
+        // ]);
+
+        //! 👇 update with Required query
+        $data = array();
+        $data['user_category'] = $request->user_category;
+        $data['user_id'] = Auth::user()->id;
+        $data['created_at'] = Carbon::now();
+        DB::table('categories')->where('id', $id)->update($data);
+
+        return Redirect()->route('all.category')->with('success', 'Category Updated Successfully!');
+    }
 }
