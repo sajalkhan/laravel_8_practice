@@ -14,7 +14,7 @@ class CategoryController extends Controller
     {
         // $category = Category::all();
         // $category = DB::table('categories')->latest()->get(); //* get data using query builder
-        $category = Category::latest()->get(); //? it will return all latest data
+        $category = Category::latest()->paginate(4); //? it will return all latest data
         return view('admin/category/index', compact('category'));
         //! this is work like view('admin.category.index') <- we can also use this type
     }

@@ -39,10 +39,10 @@
                             </thead>
                             <tbody>
 
-                                @php ($i = 1)
+                                {{-- @php ($i = 1) --}}
                                 @foreach ($category as $cat)
                                 <tr>
-                                    <td>{{$i++}}</td>
+                                    <td>{{$category->firstItem()+$loop->index}}</td>
                                     <td>{{$cat->user_category}}</td>
                                     <td>{{$cat->user_id}}</td>
                                     <td>
@@ -60,6 +60,7 @@
 
                             </tbody>
                         </table>
+                        {{$category->links()}}
                     </div>
                 </div>
 
