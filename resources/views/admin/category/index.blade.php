@@ -44,7 +44,10 @@
                                 <tr>
                                     <td>{{$category->firstItem()+$loop->index}}</td>
                                     <td>{{$cat->user_category}}</td>
-                                    <td>{{$cat->user_id}}</td>
+                                    <td>{{$cat->getUser->name}}</td>
+                                    {{-- 👆 show another table data with one to one relation for Eloquent ORM --}}
+                                    {{-- <td>{{$cat->name}}</td> --}}
+                                    {{-- 👆 for query builder ORM we have to follow this way to show db field from another table --}}
                                     <td>
                                         @if ($cat->created_at == null)
                                         <span class='text-danger'>No Date set</span>

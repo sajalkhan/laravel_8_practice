@@ -12,6 +12,13 @@ class CategoryController extends Controller
 {
     public function AllCat()
     {
+
+        //!👇 Query builder join two table
+        // $category = DB::table('categories')
+        //     ->join('users', 'categories.user_id', 'users.id')
+        //     ->select('categories.*', 'users.name')
+        //     ->latest()->paginate(4);
+
         // $category = Category::all();
         // $category = DB::table('categories')->latest()->get(); //* get data using query builder
         $category = Category::latest()->paginate(4); //? it will return all latest data

@@ -15,4 +15,12 @@ class Category extends Model
         'user_id',
         'user_category',
     ];
+
+    //?🔰 join two table with Eloquent ORM
+    //!⚠️ this method don't needed for query builder
+    public function getUser()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+        //!😎 here we create relation with User table id and category tabe user_id
+    }
 }
