@@ -35,6 +35,15 @@ Route::get('/category/edit/{id}', [CategoryController::class, 'EditCategory']);
 //Update Category
 Route::post('/category/update/{id}', [CategoryController::class, 'UpdateCategory']);
 
+//Delete Category
+Route::get('/category/delete/{id}', [CategoryController::class, 'SoftdeleteCategory']);
+
+//Restore Category
+Route::get('/category/restore/{id}', [CategoryController::class, 'RestoreCategory']);
+
+//Delete Permanently Category
+Route::get('/category/pdelete/{id}', [CategoryController::class, 'DeleteCategory']);
+
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

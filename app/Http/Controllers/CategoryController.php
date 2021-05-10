@@ -21,8 +21,13 @@ class CategoryController extends Controller
 
         // $category = Category::all();
         // $category = DB::table('categories')->latest()->get(); //* get data using query builder
+
         $category = Category::latest()->paginate(4); //? it will return all latest data
-        return view('admin/category/index', compact('category'));
+        $trashCategory = Category::onlyTrashed()->latest()->paginate(3, ['*'], 'trashed'); //? show delete data from here
+        //!👉 here this  (3, ['*'], 'trashed') help us to use multiple pagination in one page.
+        //!   Other wise if one paginate changes another one is also effected
+
+        return view('admin/category/index', compact('category', 'trashCategory'));
         //! this is work like view('admin.category.index') <- we can also use this type
     }
 
@@ -106,5 +111,23 @@ class CategoryController extends Controller
         DB::table('categories')->where('id', $id)->update($data);
 
         return Redirect()->route('all.category')->with('success', 'Category Updated Successfully!');
+    }
+
+    public function SoftdeleteCategory($id)
+    {
+        $delete = Category::find($id)->delete();  //!⚠️ this data will go to trash data
+        return Redirect()->back()->with('success', 'Category Soft Deleted Successfully!');
+    }
+
+    public function RestoreCategory($id)
+    {
+        $restore = Category::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success', 'Category Restore Successfully!');
+    }
+
+    public function DeleteCategory($id)
+    {
+        $pdelete = Category::withTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success', 'Category permanently deleted Successfully!');
     }
 }

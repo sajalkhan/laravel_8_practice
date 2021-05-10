@@ -61,7 +61,7 @@
                                     </td>
                                     <td>
                                         <a href="{{url('category/edit/'.$cat->id)}}" class='btn btn-info'>Edit</a>
-                                        <a href="" class='btn btn-danger'>Delete</a>
+                                        <a href="{{url('category/delete/'.$cat->id)}}" class='btn btn-danger'>Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -69,6 +69,54 @@
                             </tbody>
                         </table>
                         {{$category->links()}}
+                    </div>
+
+                    {{-- Trash List --}}
+                    <div class='card mt-2'>
+                        <div class='card-header'>Trash List</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sl No.</th>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">user</th>
+                                    <th scope="col">Created At</th>
+                                    <th scope='col'>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($trashCategory as $cat)
+                                <tr>
+                                    <td>{{$category->firstItem()+$loop->index}}</td>
+                                    <td>{{$cat->user_category}}</td>
+                                    <td>{{$cat->getUser->name}}</td>
+                                    {{-- 👆 show another table data with one to one relation for Eloquent ORM --}}
+                                    {{-- <td>{{$cat->name}}</td> --}}
+                                    {{-- 👆 for query builder ORM we have to follow this way to show db field from another table --}}
+                                    <td>
+                                        @if ($cat->created_at == null)
+                                        <span class='text-danger'>No Date set</span>
+                                        @else
+                                        {{-- 👇 --it's not work with query builder --}}
+                                        {{$cat->created_at->diffForHumans()}}
+                                        {{-- 👇 this is usefule when we read data from query builder
+                                            <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}
+                                    </td>--}}
+                                    @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{url('category/restore/'.$cat->id)}}" class='btn btn-info'>Restore</a>
+                                        <a href="{{url('category/pdelete/'.$cat->id)}}" class='btn btn-danger'>
+                                            Delete Permanently
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                        {{$trashCategory->links()}}
                     </div>
                 </div>
 
