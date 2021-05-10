@@ -26,6 +26,10 @@ Route::get('/contact', function () {
 //Category Controller
 Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
 
+//Add Category
+Route::post('/category/add', [CategoryController::class, 'AddCategory'])->name('add.category');
+
+
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
