@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;  //database query builder
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 // use app\models\User;
 
 //TODO: create a new database table -> php artisan migrate
@@ -43,6 +44,13 @@ Route::get('/category/restore/{id}', [CategoryController::class, 'RestoreCategor
 
 //Delete Permanently Category
 Route::get('/category/pdelete/{id}', [CategoryController::class, 'DeleteCategory']);
+
+//* 😍 for brand route
+Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+
+//Add Brand
+Route::post('/brnad/add', [BrandController::class, 'AddBrand'])->name('store.brand');
+
 
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
