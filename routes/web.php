@@ -51,6 +51,14 @@ Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand'
 //Add Brand
 Route::post('/brnad/add', [BrandController::class, 'AddBrand'])->name('store.brand');
 
+//Edit Brand
+Route::get('/brand/edit/{id}', [BrandController::class, 'EditBrand']);
+
+//Update Brand
+Route::post('/brand/update/{id}', [BrandController::class, 'UpdateBrand']);
+
+//Delete brand
+Route::get('/brand/delete/{id}', [BrandController::class, 'DeleteBrand']);
 
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
