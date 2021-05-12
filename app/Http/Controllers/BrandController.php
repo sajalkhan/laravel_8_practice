@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Brand;
+use Image;
 
 class BrandController extends Controller
 {
@@ -23,14 +24,25 @@ class BrandController extends Controller
             ]
         );
 
+        //!TODO: 📙 http://image.intervention.io/getting_started/installation
         $brand_image = $request->file('brand_image');
-        $name_gen = hexdec(uniqid()); //!create unique id
 
+        //! 👇 first way without any external library
+        // $name_gen = hexdec(uniqid()); //!create unique id
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // $img_name = $name_gen . '.' . $img_ext;
+        // $upload_location = 'images/brand/';
+        // $final_image = $upload_location . $img_name;
+        // $brand_image->move($upload_location, $img_name);
+
+        //!👇 second way with image intervention package
+        $name_gen = hexdec(uniqid()); //!create unique id
         $img_ext = strtolower($brand_image->getClientOriginalExtension());
         $img_name = $name_gen . '.' . $img_ext;
         $upload_location = 'images/brand/';
         $final_image = $upload_location . $img_name;
-        $brand_image->move($upload_location, $img_name);
+        Image::make($brand_image)->resize(300, 200)->save($final_image);
+        //!-------------------------👆 now we resize our image by 300h/200w --------------------------//
 
         Brand::insert([
             'brand_name' => $request->brand_name,
@@ -60,13 +72,22 @@ class BrandController extends Controller
         $old_image = $request->old_image;
 
         $brand_image = $request->file('brand_image');
-        $name_gen = hexdec(uniqid()); //!create unique id
 
+        //! 👇 first way without any external library
+        // $name_gen = hexdec(uniqid()); //!create unique id
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // $img_name = $name_gen . '.' . $img_ext;
+        // $upload_location = 'images/brand/';
+        // $final_image = $upload_location . $img_name;
+        // $brand_image->move($upload_location, $img_name);
+
+        //!👇 second way with image intervention package
+        $name_gen = hexdec(uniqid()); //!create unique id
         $img_ext = strtolower($brand_image->getClientOriginalExtension());
         $img_name = $name_gen . '.' . $img_ext;
         $upload_location = 'images/brand/';
         $final_image = $upload_location . $img_name;
-        $brand_image->move($upload_location, $img_name);
+        Image::make($brand_image)->resize(300, 200)->save($final_image);
 
         unlink($old_image);
         //! 👆 by using unlink we can remove that image from a particular location
