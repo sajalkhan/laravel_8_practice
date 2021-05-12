@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;  //database query builder
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\MultiImageController;
 // use app\models\User;
 
 //TODO: create a new database table -> php artisan migrate
@@ -59,6 +60,10 @@ Route::post('/brand/update/{id}', [BrandController::class, 'UpdateBrand']);
 
 //Delete brand
 Route::get('/brand/delete/{id}', [BrandController::class, 'DeleteBrand']);
+
+//* 😎 Multi image route
+Route::get('/multi-image', [MultiImageController::class, 'MultiImage'])->name('multi.image');
+Route::post('/multi-image/upload', [MultiImageController::class, 'UploadImages'])->name('store.image');
 
 //TODO: php jetstring authentication -> https://jetstream.laravel.com/2.x/installation.html
 
