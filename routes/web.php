@@ -12,6 +12,14 @@ use App\Http\Controllers\MultiImageController;
 //TODO: create model and migration -> php artisan make:model modelname -m
 //TODO: Create controller -> php artisan make:controller  controllername
 
+//!open test mail: https://mailtrap.io/
+Route::get(
+    '/email/verify',
+    function () {
+        return view('auth.verify-email');
+    }
+)->middleware('auth')->name('verification.notice');
+
 Route::get('/', function () {
     return view('auth/register');
 });
