@@ -11,6 +11,7 @@ use App\Http\Controllers\MultiImageController;
 //TODO: learn create model and migration https://laravel.com/docs/8.x/eloquent
 //TODO: create model and migration -> php artisan make:model modelname -m
 //TODO: Create controller -> php artisan make:controller  controllername
+//TODO: update user profile storage link: php artisan storage:link
 
 Route::get('/', function () {
     return view('auth/register');
