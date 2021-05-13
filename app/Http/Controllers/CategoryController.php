@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    //! __constructor is a special function it will call automatically when object is created
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function AllCat()
     {
 

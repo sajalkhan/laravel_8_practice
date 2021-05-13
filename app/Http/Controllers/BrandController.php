@@ -9,6 +9,11 @@ use Image;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function AllBrand()
     {
         $brand = Brand::latest()->paginate(4); //? it will return all latest data
