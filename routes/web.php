@@ -80,6 +80,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // return view('dashboard', compact('users'));
 
     //TODO: read query builder -> https://laravel.com/docs/8.x/queries
-    $users = DB::table('users')->get();
-    return view('dashboard', ['users' => $users]);
+    // $users = DB::table('users')->get();
+    // return view('dashboard', ['users' => $users]);
+    return view('admin/index');
 })->name('dashboard');
